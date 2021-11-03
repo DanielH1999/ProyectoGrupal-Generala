@@ -21,18 +21,19 @@ public class GeneralaCLI
 		
 		int cantDados = 5;
 		
-		String[] jugadores = new String[maxJugadores];
+		String[] jugadores = new String[maxJugadores]; //array de jugadores
 		
 		jugadores = averiguarJugadores(maxJugadores);
 		
-		int[] dados = new int[cantDados];
+		int[] dados = new int[cantDados]; //array de los 5 dados
 		
 		dados = tirarDados(cantDados);
 		
 				
 		//revisar resultados de dados y determinar que 
 	}
-	
+	//una declaracion de funcion:
+	//keywords  |devolucion|nombre de funcion|(argumentos)
 	private static String[] averiguarJugadores(int maxJugadores)
 	{
 		//averiguar jugadores
