@@ -5,64 +5,98 @@
  */
 package juego;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 /**
  *
- * @author danielh
+ * @authores: Alejandra, Daniel, Leon
  */
+
 public class GeneralaCLI
 {
 	public static void main(String[] args)
 	{
 				
-		int maxJugadores = 4;
+		int maxJugadores = 4; //Cantidad maxima de jugadores
 		
-		int cantDados = 5;
+		int cantDados = 5; //Cantidad de dados
 		
-		String[] jugadores = new String[maxJugadores]; //array de jugadores
+		int turnos = 3; //Cantidad de turnos por jugador
 		
-		jugadores = averiguarJugadores(maxJugadores);
+		String[] jugadores = new String[maxJugadores]; //Array de jugadores
 		
-		int[] dados = new int[cantDados]; //array de los 5 dados
+		jugadores = averiguarJugadores(maxJugadores); //Invocacion del metodo que averigua los nombres de los jugadores y los guarda en la variable array declarada justo antes
 		
-		dados = tirarDados(cantDados);
+		//ToDo:
+		//Definir un array donde guardar los puntajes de todos los jugadores
+		//-> Señalizar a que jugador pertenecen los puntajes (ej: por numero de jugador)
 		
-				
-		//revisar resultados de dados y determinar que 
+		
+		//INICIO DEL JUEGO
+		
+		
+		//ToDo:
+		//llevar cuentas de turno por jugador
+		//-> Cuando terminen los turnos, pasar al siguiente jugador
+		//
+		//llevar cuentas de jugador actual
+		//
+		//llevar cuentas de cuantas veces se jugo por jugador
+		//-> Informar el ganador cuando se hayan terminado las jugadas posibles o alguien consiga GENERALA SERVIDA
+		
+		//ToDo:
+		//Poner un boton para que el usuario se sienta participe de la tirada de dados
+		
+		int[] dados = tirarDados(cantDados); //Array de los 5 dados = invocacion del metodo que pone valores al azar
+		
+		System.out.println(Arrays.toString(dados));//Mostrar los dados en el array
+		
+		//ToDo:
+		//Preguntarle al usuario que dados quiere cambiar
+		//-> Hacerlo hasta que se terminen sus turno
+
+		//ToDo:
+		//Averiguar que puede hacer el usuario con los dados que tiene
+		//-> Darle a elegir entre las opciones
+		
+		//ToDo:
+		//Anotar los puntos elegidos por el usuario en la casilla que corresponda
+		//-> Sumar los puntos al total del jugador
+		
+		//Pasar al siguiente jugador y repetir todos los pasos desde "INICIO DEL JUEGO"
+		
+		//Al terminar de jugar, informar ganador
+		//-> Posiblemente imprimir una tabla de puntuaciones
 	}
-	//una declaracion de funcion:
-	//keywords  |devolucion|nombre de funcion|(argumentos)
-	private static String[] averiguarJugadores(int maxJugadores)
-	{
-		//averiguar jugadores
 	
+	//una declaracion de funcion o metodo:
+	private static String[] averiguarJugadores(int maxJugadores) //metodo que toma como parametro maxJugadores y devuelve String[]
+	{	
 		Scanner leer = new Scanner(System.in);
 		
-		String[] Jugadores = new String[maxJugadores];
+		String[] Jugadores = new String[maxJugadores]; //Lista de jugadores tiene maxJugadores elementos
 		
-		for (int cantJugadores = 0; cantJugadores < maxJugadores; cantJugadores++)
+		for (int cantJugadores = 0; cantJugadores < maxJugadores; cantJugadores++) //Iterar por toda la lista Jugadores
 		{
-			System.out.print("Jugador " + cantJugadores + ": ");
+			System.out.print("Jugador " + (cantJugadores+1) + "/" + maxJugadores + ": "); //Indicar numero de jugador a agregar
 			
-			Jugadores[cantJugadores] = leer.next();
+			Jugadores[cantJugadores] = leer.next(); //Pedir nombre de jugador al usuario
 		}
-		return Jugadores;
+		return Jugadores; //Devolver la lista de jugadores al metodo main()
 	}
 	
-	private static int[] tirarDados(int cantDados)
-	{
-		//tirar dados
+	private static int[] tirarDados(int cantDados) //metodo que toma como parametro int cantDados y devuelve int[] dados
+	{	
+		Random azar = new Random(); //Una clase del paquete java.util que genera numeros pseudo-aleatorios
 		
-		Random azar = new Random();
+		int[] dados = new int[cantDados]; //Declaro un array para poner los dados
 		
-		int[] dados = new int[cantDados]; //declaro un array para poner los dados
-		
-		for (int i = 0; i < cantDados; i++)
+		for (int i = 0; i < cantDados; i++) //Iterar por la cantidad de dados del array
 		{
-			int dado = 1 + azar.nextInt(6);
+			dados[i] = 1 + azar.nextInt(6); //Poner un valor aleatorio en el dado actual
 		}
-		return dados; //devuelvo el array dados
+		return dados; //Devuelvo el int[] dados
 	}
 }
