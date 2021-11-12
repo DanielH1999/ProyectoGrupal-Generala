@@ -29,7 +29,7 @@ public class GeneralaCLI
 		
 		jugadores = averiguarJugadores(maxJugadores); //Invocacion del metodo que averigua los nombres de los jugadores y los guarda en la variable array declarada justo antes
 		
-		//ToDo:
+		//ToDo 1:
 		//Definir un array donde guardar los puntajes de todos los jugadores
 		//-> Señalizar a que jugador pertenecen los puntajes (ej: por numero de jugador)
 		
@@ -37,7 +37,7 @@ public class GeneralaCLI
 		//INICIO DEL JUEGO
 		
 		
-		//ToDo:
+		//ToDo 2:
 		//llevar cuentas de turno por jugador
 		//-> Cuando terminen los turnos, pasar al siguiente jugador
 		//
@@ -46,27 +46,30 @@ public class GeneralaCLI
 		//llevar cuentas de cuantas veces se jugo por jugador
 		//-> Informar el ganador cuando se hayan terminado las jugadas posibles o alguien consiga GENERALA SERVIDA
 		
-		//ToDo:
+		//ToDo 3:
 		//Poner un boton para que el usuario se sienta participe de la tirada de dados
 		
 		int[] dados = tirarDados(cantDados); //Array de los 5 dados = invocacion del metodo que pone valores al azar
 		
 		System.out.println(Arrays.toString(dados));//Mostrar los dados en el array
 		
-		//ToDo:
+		//ToDo 4:
 		//Preguntarle al usuario que dados quiere cambiar
 		//-> Hacerlo hasta que se terminen sus turno
 
-		//ToDo:
+		//ToDo 5:
 		//Averiguar que puede hacer el usuario con los dados que tiene
 		//-> Darle a elegir entre las opciones
 		
-		//ToDo:
+		//ToDo 6:
 		//Anotar los puntos elegidos por el usuario en la casilla que corresponda
 		//-> Sumar los puntos al total del jugador
 		
-		//Pasar al siguiente jugador y repetir todos los pasos desde "INICIO DEL JUEGO"
+		//ToDo 7:
+		//Pasar al siguiente jugador
+		//repetir todos los pasos desde "INICIO DEL JUEGO"
 		
+		//ToDo 8:
 		//Al terminar de jugar, informar ganador
 		//-> Posiblemente imprimir una tabla de puntuaciones
 	}
