@@ -19,7 +19,7 @@ public class GeneralaCLI
 	public static void main(String[] args)
 	{
 				
-		int maxJugadores = 4; //Cantidad maxima de jugadores
+		int maxJugadores = 5; //Cantidad maxima de jugadores
 		
 		int cantDados = 5; //Cantidad de dados
 		
@@ -27,12 +27,16 @@ public class GeneralaCLI
 		
 		String[] jugadores = new String[maxJugadores]; //Array de jugadores
 		
-		jugadores = averiguarJugadores(maxJugadores); //Invocacion del metodo que averigua los nombres de los jugadores y los guarda en la variable array declarada justo antes
+		jugadores = averiguarJugadores(maxJugadores); //Invocacion del metodo que averigua los nombres de los jugadores y los guarda en jugadores
 		
-		//ToDo 1:
-		//Definir un array donde guardar los puntajes de todos los jugadores
+		//Definir una matrix donde guardar los puntajes de todos los jugadores
 		//-> Señalizar a que jugador pertenecen los puntajes (ej: por numero de jugador)
-		
+		//(HECHO):
+		int[][] puntajes = new int[jugadores.length][12];
+		//Puntajes[jugador][0] numero de jugador
+		//Puntajes[jugador][1~6] cantidad de Dados del mismo numero que el indice
+		//Puntajes[jugador][7~10] escalera~generala
+		//Puntajes[jugador][11] total del jugador
 		
 		//INICIO DEL JUEGO
 		
