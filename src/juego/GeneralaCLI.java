@@ -29,14 +29,15 @@ public class GeneralaCLI
 		
 		jugadores = averiguarJugadores(maxJugadores); //Invocacion del metodo que averigua los nombres de los jugadores y los guarda en jugadores
 		
-		//Definir una matrix donde guardar los puntajes de todos los jugadores
-		//-> Señalizar a que jugador pertenecen los puntajes (ej: por numero de jugador)
-		//(HECHO):
+		//(ToDo 1 HECHO):
 		int[][] puntajes = new int[jugadores.length][12];
-		//Puntajes[jugador][0] numero de jugador
-		//Puntajes[jugador][1~6] cantidad de Dados del mismo numero que el indice
-		//Puntajes[jugador][7~10] escalera~generala
-		//Puntajes[jugador][11] total del jugador
+		//puntajes[jugador][0] numero de jugador
+		//puntajes[jugador][1~6] cantidad de puntos en el dado ej: puntajes[jugador][4] es el puntaje que el jugador anoto al 4
+		//puntajes[jugador][7] escalera
+		//puntajes[jugador][8] full
+		//puntajes[jugador][9] poker
+		//puntajes[jugador][10] generala
+		//puntajes[jugador][11] total del jugador
 		
 		//INICIO DEL JUEGO
 		
