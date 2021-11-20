@@ -23,7 +23,6 @@ public class GeneralaCLI
 		
 		int cantDados = 5; //Cantidad de dados
 		
-		int turnos = 3; //Cantidad de turnos por jugador
 		
 		String[] jugadores = new String[maxJugadores]; //Array de jugadores
 		
@@ -39,44 +38,52 @@ public class GeneralaCLI
 		//puntajes[jugador][10] generala
 		//puntajes[jugador][11] total del jugador
 		
+		//pongo el numero de jugador en la columna inicial de cada fila:
+		for (int jugador = 0; jugador < jugadores.length; jugador++) //por cada jugador en la lista
+		{
+			puntajes[jugador][0] = jugador; //agregar el numero de jugador en fila,columna=(jugador,0)
+	    }
+		
 		//INICIO DEL JUEGO
 		
 		
 		//ToDo 2:
-		//llevar cuentas de turno por jugador
-		//-> Cuando terminen los turnos, pasar al siguiente jugador
-		//
-		//llevar cuentas de jugador actual
-		//
-		//llevar cuentas de cuantas veces se jugo por jugador
-		//-> Informar el ganador cuando se hayan terminado las jugadas posibles o alguien consiga GENERALA SERVIDA
-		
-		//ToDo 3:
-		//Poner un boton para que el usuario se sienta participe de la tirada de dados
-		
-		int[] dados = tirarDados(cantDados); //Array de los 5 dados = invocacion del metodo que pone valores al azar
-		
-		System.out.println(Arrays.toString(dados));//Mostrar los dados en el array
-		
-		//ToDo 4:
-		//Preguntarle al usuario que dados quiere cambiar
-		//-> Hacerlo hasta que se terminen sus turno
+		for (int turno = 0; turno < 3; turno++) //llevar cuentas de turno por jugador
+		{
+			for (int jugador = 0; jugador < jugadores.length; jugador++) //llevar cuentas de jugador actual
+			{
+				//llevar cuentas de cuantas veces se jugo por jugador
+				//-> Informar el ganador cuando se hayan terminado las jugadas posibles o alguien consiga GENERALA SERVIDA
+				
+				//ToDo 3:
+				//Poner un boton para que el usuario se sienta participe de la tirada de dados
 
-		//ToDo 5:
-		//Averiguar que puede hacer el usuario con los dados que tiene
-		//-> Darle a elegir entre las opciones
-		
-		//ToDo 6:
-		//Anotar los puntos elegidos por el usuario en la casilla que corresponda
-		//-> Sumar los puntos al total del jugador
-		
-		//ToDo 7:
-		//Pasar al siguiente jugador
-		//repetir todos los pasos desde "INICIO DEL JUEGO"
-		
-		//ToDo 8:
-		//Al terminar de jugar, informar ganador
-		//-> Posiblemente imprimir una tabla de puntuaciones
+				int[] dados = tirarDados(cantDados); //Array de los 5 dados = invocacion del metodo que pone valores al azar
+
+				System.out.println(Arrays.toString(dados));//Mostrar los dados en el array
+
+				//ToDo 4:
+				//Preguntarle al usuario que dados quiere cambiar
+				//-> Hacerlo hasta que se terminen sus turno
+
+				//ToDo 5:
+				//Averiguar que puede hacer el usuario con los dados que tiene
+				//-> Darle a elegir entre las opciones
+
+				//ToDo 6:
+				//Anotar los puntos elegidos por el usuario en la casilla que corresponda
+				//-> Sumar los puntos al total del jugador
+
+				//ToDo 7:
+				//Pasar al siguiente jugador
+				//repetir todos los pasos desde "INICIO DEL JUEGO"
+
+				//ToDo 8:
+				//Al terminar de jugar, informar ganador
+				//-> Posiblemente imprimir una tabla de puntuaciones
+				
+			} //fin del for de seleccion de jugador
+		}//-> Cuando terminen los turnos, pasar al siguiente jugador (fin del for que cuenta turnos)
 	}
 	
 	//una declaracion de funcion o metodo:
