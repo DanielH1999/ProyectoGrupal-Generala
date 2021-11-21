@@ -47,17 +47,15 @@ public class GeneralaCLI
 		//INICIO DEL JUEGO
 		
 		
-		//ToDo 2:
+		//ToDo:
 		for (int turno = 0; turno < 3; turno++) //llevar cuentas de turno por jugador
 		{
 			for (int jugador = 0; jugador < jugadores.length; jugador++) //llevar cuentas de jugador actual
 			{
-				//llevar cuentas de cuantas veces se jugo por jugador
+				//llevar cuentas de las jugadas que faltan hacer
 				//-> Informar el ganador cuando se hayan terminado las jugadas posibles o alguien consiga GENERALA SERVIDA
 				
-				//ToDo 3:
-				//Poner un boton para que el usuario se sienta participe de la tirada de dados
-
+				
 				int[] dados = tirarDados(cantDados); //Array de los 5 dados = invocacion del metodo que pone valores al azar
 
 				System.out.println(Arrays.toString(dados));//Mostrar los dados en el array
