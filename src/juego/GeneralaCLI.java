@@ -9,17 +9,16 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- *
- * @authores: Alejandra, Daniel, Leon
- */
+//Hecho por Alejandra, Daniel, Leon.
 
 public class GeneralaCLI
 {
 	public static void main(String[] args)
 	{
-				
-		int maxJugadores = 5; //Cantidad maxima de jugadores
+		//los siguientes valores fueron inicializados en 1 para facilidad de pruebas: maxJugadores, cantTurnos
+		int maxJugadores = 1; //Cantidad maxima de jugadores
+		
+		int cantTurnos = 1; //Cantidad de turnos por jugador (DEFAULT: 3)
 		
 		int cantDados = 5; //Cantidad de dados
 		
@@ -45,12 +44,9 @@ public class GeneralaCLI
 	    }
 		
 		//INICIO DEL JUEGO
-		
-		
-		//ToDo:
-		for (int turno = 0; turno < 3; turno++) //llevar cuentas de turno por jugador
+		for (int jugador = 0; jugador < jugadores.length; jugador++) //llevar cuentas de jugador actual
 		{
-			for (int jugador = 0; jugador < jugadores.length; jugador++) //llevar cuentas de jugador actual
+			for (int turno = 0; turno < cantTurnos; turno++) //llevar cuentas de turno por jugador
 			{
 				//llevar cuentas de las jugadas que faltan hacer
 				//-> Informar el ganador cuando se hayan terminado las jugadas posibles o alguien consiga GENERALA SERVIDA
@@ -60,28 +56,30 @@ public class GeneralaCLI
 
 				System.out.println(Arrays.toString(dados));//Mostrar los dados en el array
 
-				//ToDo 4:
-				//Preguntarle al usuario que dados quiere cambiar
+				//ToDo 4 (tomado por Alejandra):
+				//Preguntarle al usuario si quiere cambiar algun dado
+				//Dejar que el usuario seleccione los dados que quiere cambiar
+				//Volver a tirar los dados a cambiar
 				//-> Hacerlo hasta que se terminen sus turno
 
 				//ToDo 5:
-				//Averiguar que puede hacer el usuario con los dados que tiene
+				//Revisar la lista de dados y comparar con las posibles jugadas especiales
+				//Informarle al usuario donde puede anotar puntos
+				//Hacer que el usuario gane automaticamente si saca una generala en el primer turno 
 				//-> Darle a elegir entre las opciones
 
 				//ToDo 6:
-				//Anotar los puntos elegidos por el usuario en la casilla que corresponda
-				//-> Sumar los puntos al total del jugador
+				//Anotar los puntos elegidos por el usuario en puntajes[jugador][lo que corresponda]
+				//-> Sumar los puntos al total del jugador (puntajes[jugador][11])
 
-				//ToDo 7:
-				//Pasar al siguiente jugador
-				//repetir todos los pasos desde "INICIO DEL JUEGO"
+			} //-> Cuando terminen los turnos, pasar al siguiente jugador (fin del for que cuenta turnos)
+		} //fin del for de seleccion de jugador
+		
+		//Cuando se termine de jugar
 
-				//ToDo 8:
-				//Al terminar de jugar, informar ganador
-				//-> Posiblemente imprimir una tabla de puntuaciones
-				
-			} //fin del for de seleccion de jugador
-		}//-> Cuando terminen los turnos, pasar al siguiente jugador (fin del for que cuenta turnos)
+		//ToDo 7:
+			//Al terminar de jugar, informar ganador
+			//-> Posiblemente imprimir una tabla de puntuaciones
 	}
 	
 	//una declaracion de funcion o metodo:
@@ -111,5 +109,22 @@ public class GeneralaCLI
 			dados[i] = 1 + azar.nextInt(6); //Poner un valor aleatorio en el dado actual
 		}
 		return dados; //Devuelvo el int[] dados
+	}
+	
+	private int/*<-tipo de dato que devuelve*/ metodoDeEjemplo(int parametro, int otroParametro)
+	{
+		//un parametro o argumento es un dato que toma un metodo o funcion para usar
+		//en este caso, todos los argumentos son de tipo entero
+		
+		//devolver un valor significa agarrar una variable y pasarsela a la funcion invocadora, generalmente main()
+		int resultado = parametro + otroParametro;
+		
+		return resultado; //devolver resultado
+		//el valor devuelto puede ser asignado a una variable o usado al momento de la llamada en la funcion invocadora
+		
+		//ej mivariable = funcionX();
+		
+		//ej if (tengoDosOjos()) donde tengoDosOjos devuelve boolean (true o false)
+		
 	}
 }
