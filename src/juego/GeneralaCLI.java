@@ -49,7 +49,7 @@ public class GeneralaCLI
 			for (int turno = 0; turno < cantTurnos; turno++) //llevar cuentas de turno por jugador
 			{
 				//llevar cuentas de las jugadas que faltan hacer
-				//-> Informar el ganador cuando se hayan terminado las jugadas posibles o alguien consiga GENERALA SERVIDA
+				//-> Informar el ganador cuando se hayan terminado las jugadas puntuables o alguien consiga GENERALA SERVIDA
 				
 
 				mostrarDados(dados);//Mostrar los dados en el array
@@ -57,13 +57,13 @@ public class GeneralaCLI
 				//ToDo 4 (HECHO):
 				cambiarDados(dados, turno);//-> Hacerlo hasta que se terminen sus turno
 				
-				Arrays.sort(dados);
-				
-				//ToDo 5:
-				//Revisar la lista de dados y comparar con las posibles jugadas especiales
-				//Informarle al usuario donde puede anotar puntos
-				//Hacer que el usuario gane automaticamente si saca una generala en el primer turno 
-				//-> Darle a elegir entre las opciones
+				//ToDo 5 (HECHO):
+				if (calcularJugadas(dados, turno) == 1)
+				{
+					System.out.println(jugadores[jugador]+" gano la partida por generala servida");
+					System.exit(0);
+				}
+
 
 				//ToDo 6:
 				//Anotar los puntos elegidos por el usuario en puntajes[jugador][lo que corresponda]
@@ -76,7 +76,9 @@ public class GeneralaCLI
 
 		//ToDo 7:
 			//Al terminar de jugar, informar ganador
-			//-> Posiblemente imprimir una tabla de puntuaciones
+			
+		//ToDo 8:
+			//Desarrollar una interfaz grafica que se encargue de todos estos pasos
 	}
 	
 	//una declaracion de funcion o metodo:
@@ -108,7 +110,8 @@ public class GeneralaCLI
 		return dados; //Devuelvo el int[] dados
 	}
 
-	private static void mostrarDados(int[] dados) {
+	private static void mostrarDados(int[] dados)
+	{
 		System.out.print("[");
 		
 		for (int j = 0; j < dados.length; j++)
@@ -156,6 +159,7 @@ public class GeneralaCLI
 				cambiar = false;
 			}
 		}
+		
 		while (!(respuesta.equalsIgnoreCase("S")) && !(respuesta.equalsIgnoreCase("N")));
 
 		if (cambiar)
@@ -209,21 +213,126 @@ public class GeneralaCLI
 			mostrarDados(dados);
 		}
 	}
-	
-	private int/*<-tipo de dato que devuelve*/ metodoDeEjemplo(int parametro, int otroParametro)
+
+	private static int calcularJugadas(int[] dados, int turno)
 	{
-		//un parametro o argumento es un dato que toma un metodo o funcion para usar
-		//en este caso, todos los argumentos son de tipo entero
+		int[] puntuables = new int[11];
+		//puntuables[1~6] dados obtenidos de numero identico al indice
+		//puntuables[7~10] jugadas especiales
+
+		for (int actual = 0; actual < dados.length; actual++)
+		{
+
+			switch (dados[actual])
+			{
+				case 1:
+					puntuables[1]+=1; //cantidad de 1 que hay
+					break;
+
+				case 2:
+					puntuables[2]+=2; //cantidad de 2 que hay
+					break;
+
+				case 3:
+					puntuables[3]+=3; //cantidad de 3 que hay
+					break;
+
+				case 4:
+					puntuables[4]+=4; //cantidad de 4 que hay
+					break;
+
+				case 5:
+					puntuables[5]+=5; //cantidad de 5 que hay
+					break;
+
+				case 6:
+					puntuables[6]+=6; //cantidad de 6 que hay
+					break;	
+				//Terminan los numeros de los dados
+				//mas adelante en puntuables[] estan las jugadas mayores
+			}
+		}
+		//Revisar la lista de dados y comparar con las puntuables jugadas especiales
+		for (int a = 1; a <= 6; a++)
+		{
+			if (puntuables[a] == a*5) //busco generala una vez
+			{
+				//[a][a][a][a][a]
+				if(puntuables[10] == 0)
+				{
+					if (turno == 0) //si es generala servida, gana automaticamente
+					{
+						return 1;
+					}
+
+					puntuables[10] = 60;
+				}
+			}
+
+			if (puntuables[a] == a*4) //busco poker una vez
+			{
+				//[a][a][a][a] y [x]
+				puntuables[9] = 40;
+			}				
+
+			if (puntuables[a] == a*2 || puntuables[a] == a*3) //busco full un maximo de 2 veces
+			{
+				for (int b = 1; b <= 6; b++)
+				{
+					if (a != b)
+					{
+						if (puntuables[b] == b*2 && puntuables[a] == a*3 || puntuables[b] == b*3 && puntuables[a] == a*2)
+						{
+							//[a][a][a] y [b][b]
+							puntuables[8] = 30;
+						}	
+					}
+				}		
+			}
+		}
+
+		int[] escalera = {1,2,3,4,5};
+		int contEscalera = 0;
+
+		for (int d = 0, last = dados[d] - 1; d < dados.length; d++) //busco escalera una vez
+		{
+				if ((dados[d] == escalera[d] || dados[d] == (escalera[d]+1)) && last == dados[d] - 1)
+				{
+					contEscalera++;
+					last++;
+				}
+				else
+				{
+					break;
+				}
+		}
+
+		if (contEscalera == 5) //si el patron esta completo
+		{
+			//[1][2][3][4][5] o [2][3][4][5][6]
+			puntuables[7] = 20;
+		}
 		
-		//devolver un valor significa agarrar una variable y pasarsela a la funcion invocadora, generalmente main()
-		int resultado = parametro + otroParametro;
+		//mostrar jugadas
 		
-		return resultado; //devolver resultado
-		//el valor devuelto puede ser asignado a una variable o usado al momento de la llamada en la funcion invocadora
+		for (int i = 0; i < puntuables.length; i++)
+		{
+			String[] jugadasEspeciales = {"escalera", "full", "poker", "generala"};
+			
+			if (puntuables[i] > 0)
+			{
+				if (i < 7)
+				{
+					System.out.println(puntuables[i]+" al "+i);
+				}
+				else
+				{
+					System.out.println(puntuables[i]+" a "+jugadasEspeciales[i-7]);
+				}
+			}
+			
+		}
 		
-		//ej mivariable = funcionX();
-		
-		//ej if (tengoDosOjos()) donde tengoDosOjos devuelve boolean (true o false)
-		
+		return 0;
 	}
 }
